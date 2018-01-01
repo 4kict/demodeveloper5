@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:a="http://java.sun.com/jsf/composite">
+
+<f:view>
+    <h:head>
+        <title>JSF Title</title>
+    </h:head>
+
+    <h:body>
+        <h:panelGrid title="JSF panelGrid Title" border="1" columns="2">
+
+            <h:outputLabel value="JSF standart label"/>
+            <h:button value="JSF default button" title="JSF button Title" outcome="/views/secondPage"/>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <!-- Без формы компоненты работать не будут -->
+        <h:form>
+            <p:panel header="PrimeFaces Components">
+                <p:outputLabel for="inputTextId" value="Введите значение: "/>
+
+                <p:messages  autoUpdate="true" />
+                <p:inputText id="inputTextId" title="Binding with ManagedBean"
+                             validatorMessage="Сообщение валидатора"
+                             requiredMessage="Необходимо чета написать, но не более 10 символов"
+                             maxlength="10"
+                             required="true"
+                             validator="#{mainBean.validData}"
+                             value="#{mainBean.inputText}">
+                </p:inputText>
+
+                <br/>
+
+                <p:commandButton value="GO to next page" action="/views/secondPage"/>
+                <h:commandButton id="loginButton"
+                                 value="zone X"
+                                 action="#{mainBean.gotoZone}"/>
+                <br/>
+                ЧекМи
+                <h:selectBooleanCheckbox value="#{mainBean.rememberMe}" onchange="submit()" >
+                    <f:valueChangeListener type="gr.demo.developer.demodeveloper.beans.ValueListener"/>
+                </h:selectBooleanCheckbox>
+
+
+
+            </p:panel>
+        </h:form>
+
+    </h:body>
+</f:view>
+
+</html>
