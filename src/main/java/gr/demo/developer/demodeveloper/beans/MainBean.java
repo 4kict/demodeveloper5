@@ -3,8 +3,6 @@ package gr.demo.developer.demodeveloper.beans;
 import org.springframework.stereotype.Component;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
