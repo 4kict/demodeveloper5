@@ -10,24 +10,31 @@
 
     <h:form>
         <p:panel>
-            <h1>Насосы</h1>
+            <h1>Мотор-насосные группы</h1>
             <br/>
 
             <ui:repeat id="erg" value="#{hydroStation.pumps}" var="pump" varStatus="status">
+                <p:commandButton value="Удалить" action="#{hydroStation.removePump(status.index)}"/>
                 <strong><h:outputLabel value=" Насос #{status.index+1}. "/></strong>
-                <h:outputLabel value=" давление: "/>
+                <h:outputLabel value=" расчетная мощность: #{pump.power}кВт "/><br/>
+                <h:outputLabel value=" давление (бар): "/>
                 <h:inputText value="#{pump.pressure}"
-                             onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
-                <h:outputLabel value=" расход: "/>
+                             onchange="submit()"
+                             onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/><br/>
+                <h:outputLabel value=" расход (л/мин): "/>
                 <h:inputText value="#{pump.flow}"
-                             onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
-                <p:commandButton value="-" action="#{hydroStation.removePump(status.index)}"/>
+                             onchange="submit()"
+                             onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/><br/>
+                <h:outputLabel value=" напорный фильтр: "/>
+                <h:selectBooleanCheckbox value="#{pump.pFilter}"/>
+
+                <br/>
                 <br/>
             </ui:repeat>
             <p:commandButton value="Добавить насос" action="#{hydroStation.addPump}"/>
             <br/>
             <br/>
-            <p:commandButton value="Далее" action="#"/>
+            <p:commandButton value="Далее" action="/accumulators"/>
         </p:panel>
 
     </h:form>

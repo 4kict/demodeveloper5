@@ -9,6 +9,7 @@ import java.util.List;
 public class HydroStation {
 
     private List<Pump> pumps = new ArrayList<>();
+    private List<Accumulator> accumulators = new ArrayList<>();
 
     public HydroStation() {
         pumps.add(new Pump());
@@ -18,8 +19,8 @@ public class HydroStation {
         return pumps;
     }
 
-    public void setPumps(List<Pump> pumps) {
-        this.pumps = pumps;
+    public void addPump() {
+        pumps.add(new Pump());
     }
 
     public void removePump(int i) {
@@ -29,7 +30,16 @@ public class HydroStation {
         pumps.remove(i);
     }
 
-    public void addPump() {
-        pumps.add(new Pump());
+    public List<Accumulator> getAccumulators() {
+        return accumulators;
     }
+
+    public void addAccumulator() {
+        accumulators.add(new Accumulator());
+    }
+
+    public void removeAccumulator(int i) {
+        accumulators.remove(i);
+    }
+
 }
