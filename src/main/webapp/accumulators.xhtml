@@ -21,11 +21,11 @@
                 <p:commandButton value="-" action="#{hydroStation.removeAccumulator(status.index)}"/>
                 <br/>
             </ui:repeat>
-            <p:commandButton value="Добавить аккумулятор" action="#{hydroStation.addAccumulator}"/>
+            <p:commandButton value="Добавить аккумулятор" action="#{hydroStation.addAccumulator()}"/>
             <br/>
             <br/>
             <p:commandButton value="Назад" action="/pumps"/>
-            <p:commandButton value="Далее" action="#"/>
+            <p:commandButton value="Далее" action="/filter"/>
         </p:panel>
 
     </h:form>
