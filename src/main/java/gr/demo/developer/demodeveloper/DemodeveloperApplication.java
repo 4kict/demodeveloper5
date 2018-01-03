@@ -15,7 +15,7 @@ public class DemodeveloperApplication extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/index.xhtml");
+        registry.addViewController("/").setViewName("forward:/pumps.xhtml");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);
     }
