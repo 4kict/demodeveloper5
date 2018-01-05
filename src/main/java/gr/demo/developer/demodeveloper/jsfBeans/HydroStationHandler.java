@@ -1,10 +1,8 @@
 package gr.demo.developer.demodeveloper.jsfBeans;
 
-import gr.demo.developer.demodeveloper.api.Accumulator;
-import gr.demo.developer.demodeveloper.api.FilterCircuit;
-import gr.demo.developer.demodeveloper.api.HydroStation;
-import gr.demo.developer.demodeveloper.api.Pump;
+import gr.demo.developer.demodeveloper.api.*;
 import gr.demo.developer.demodeveloper.services.FilterCircuitService;
+import gr.demo.developer.demodeveloper.services.HeatExchangerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +16,12 @@ public class HydroStationHandler {
 
     @Autowired
     private FilterCircuitService filterCircuitService;
+    @Autowired
+    private HeatExchangerService heatExchangerService;
+
     private HydroStation hydroStation = new HydroStation();
     private Boolean filterCircuitRequired;
+    private Boolean heatExchangerRequired;
 
     public List<Pump> getPumps() {
         return hydroStation.getPumps();
@@ -57,8 +59,12 @@ public class HydroStationHandler {
      *
      * @return
      */
-    public List<FilterCircuit> getSuitableFilterCircuit() {
+    public List<FilterCircuit> getSuitableFilterCircuits() {
         return filterCircuitService.getAll();
+    }
+
+    public List<HeatExchanger> getSuitableHeatExchangers() {
+        return heatExchangerService.getAll();
     }
 
     /**
@@ -70,8 +76,12 @@ public class HydroStationHandler {
         return filterCircuitService.getAll().get(1);
     }
 
+    public HeatExchanger getRecommendedHeatExchanger() {
+        return heatExchangerService.getAll().get(2);
+    }
+
     public FilterCircuit getFilterCircuit() {
-        if (filterCircuitRequired == null ) {
+        if (filterCircuitRequired == null) {
             hydroStation.setFilterCircuit(getRecommendedFilterCircuit());
             filterCircuitRequired = true;
         }
@@ -79,20 +89,56 @@ public class HydroStationHandler {
     }
 
     public void setFilterCircuit(FilterCircuit filterCircuit) {
-        hydroStation.setFilterCircuit(filterCircuit);
+        if (filterCircuitRequired) {
+            hydroStation.setFilterCircuit(filterCircuit);
+        }
+    }
+
+    public HeatExchanger getHeatExchanger() {
+        if (heatExchangerRequired == null) {
+            hydroStation.setHeatExchanger(getRecommendedHeatExchanger());
+            heatExchangerRequired = true;
+        }
+        return hydroStation.getHeatExchanger();
+    }
+
+    public void setHeatExchanger(HeatExchanger heatExchanger) {
+        if (heatExchangerRequired) {
+            hydroStation.setHeatExchanger(heatExchanger);
+        }
     }
 
     public Boolean getFilterCircuitRequired() {
+        if (filterCircuitRequired == null) {
+            hydroStation.setFilterCircuit(getRecommendedFilterCircuit());
+            filterCircuitRequired = true;
+        }
         return filterCircuitRequired;
     }
 
     public void setFilterCircuitRequired(Boolean filterCircuitRequired) {
         this.filterCircuitRequired = filterCircuitRequired;
-        if (!filterCircuitRequired){
+        if (!filterCircuitRequired) {
             hydroStation.setFilterCircuit(null);
             return;
         }
         hydroStation.setFilterCircuit(getRecommendedFilterCircuit());
     }
 
+    public Boolean getHeatExchangerRequired() {
+        if (heatExchangerRequired == null) {
+            hydroStation.setHeatExchanger(getRecommendedHeatExchanger());
+            heatExchangerRequired = true;
+        }
+        return heatExchangerRequired;
+    }
+
+    public void setHeatExchangerRequired(Boolean heatExchangerRequired) {
+        this.heatExchangerRequired = heatExchangerRequired;
+        if (!heatExchangerRequired) {
+            hydroStation.setHeatExchanger(null);
+            return;
+        }
+        hydroStation.setHeatExchanger(getRecommendedHeatExchanger());
+    }
 }

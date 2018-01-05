@@ -12,10 +12,10 @@ public class FilterCircuitService {
     private static List<FilterCircuit> repository = new ArrayList<>();
 
     static {
-        repository.add(new FilterCircuit("ASD-11"));
-        repository.add(new FilterCircuit("ASD-33"));
-        repository.add(new FilterCircuit("GHS-55"));
-        repository.add(new FilterCircuit("DFEI-2f"));
+        repository.add(new FilterCircuit("FGH-11"));
+        repository.add(new FilterCircuit("FLT-33"));
+        repository.add(new FilterCircuit("FER-55"));
+        repository.add(new FilterCircuit("FOEP-2f"));
 
     }
 

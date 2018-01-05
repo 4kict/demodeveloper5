@@ -1,6 +1,11 @@
 package gr.demo.developer.demodeveloper.api;
 
-public class HeatExchanger {
+import java.io.Serializable;
+
+public class HeatExchanger implements Serializable {
+
+    private static final long serialVersionUID = 73845209348L;
+
     private String type;
 
     public HeatExchanger(String type) {
