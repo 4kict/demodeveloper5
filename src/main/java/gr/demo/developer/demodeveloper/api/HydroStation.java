@@ -1,17 +1,14 @@
-package gr.demo.developer.demodeveloper.beans;
+package gr.demo.developer.demodeveloper.api;
 
-import gr.demo.developer.demodeveloper.services.FilterCircuitService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import gr.demo.developer.demodeveloper.api.Accumulator;
+import gr.demo.developer.demodeveloper.api.FilterCircuit;
+import gr.demo.developer.demodeveloper.api.HeatExchanger;
+import gr.demo.developer.demodeveloper.api.Pump;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class HydroStation {
-
-    @Autowired
-    FilterCircuitService filterCircuitService;
 
     private List<Pump> pumps = new ArrayList<>();
     private List<Accumulator> accumulators = new ArrayList<>();
@@ -30,10 +27,11 @@ public class HydroStation {
         pumps.add(new Pump());
     }
 
+    public int pumpCount(){
+        return pumps.size();
+    }
+
     public void removePump(int i) {
-        if (pumps.size() == 1) {
-            return;
-        }
         pumps.remove(i);
     }
 

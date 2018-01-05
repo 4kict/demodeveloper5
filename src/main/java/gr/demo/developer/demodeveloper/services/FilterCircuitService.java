@@ -1,6 +1,6 @@
 package gr.demo.developer.demodeveloper.services;
 
-import gr.demo.developer.demodeveloper.beans.FilterCircuit;
+import gr.demo.developer.demodeveloper.api.FilterCircuit;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +23,4 @@ public class FilterCircuitService {
         return repository;
     }
 
-    public FilterCircuit getRecommended(Integer power) {
-        return repository.get(1);
-    }
 }

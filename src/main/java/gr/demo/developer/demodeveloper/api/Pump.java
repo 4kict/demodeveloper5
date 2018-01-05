@@ -1,4 +1,4 @@
-package gr.demo.developer.demodeveloper.beans;
+package gr.demo.developer.demodeveloper.api;
 
 public class Pump {
     private Integer pressure = 0;

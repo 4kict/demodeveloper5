@@ -10,20 +10,24 @@
 
     <h:form>
         <p:panel>
-            <h1>Фильтрация и теплообмен</h1>
+            <h4>Фильтрация и теплообмен</h4>
             <br/>
-            <h:outputLabel value="Расчетная мощность гидростанции #{hydroStation.getPower()}кВт"/> <br/>
-            <h:selectBooleanCheckbox value="true" />
+            <h:outputLabel value="Вфбранный фильтрконтур #{hydroStationHandler.filterCircuit.type}"/> <br/>
+            <h:outputLabel value="флаг #{hydroStationHandler.filterCircuitRequired}"/> <br/>
+
+            <h:outputLabel value="Расчетная мощность гидростанции #{hydroStationHandler.getPower()}кВт"/> <br/>
+            <h:selectBooleanCheckbox value="#{hydroStationHandler.filterCircuitRequired}" onclick="submit()"/>
+
             <h:outputLabel value=" контур фильтрации и теплообмена "/>
-            <h:selectOneMenu value="#{hydroStation.filterCircuit}">
-                <f:selectItems value="#{filterCircuitService.getAll()}" var="item" itemLabel="#{item.type}" />
+            <h:selectOneMenu value="#{hydroStationHandler.filterCircuit}" converter="#{filterCircuitConverter}" >
+                <f:selectItems value="#{hydroStationHandler.suitableFilterCircuit}" var="item" itemLabel="#{item.type}" itemValue="#{item}" />
             </h:selectOneMenu>
-            <h:outputLabel value=" (рекомендуется #{filterCircuitService.getRecommended(hydroStation.getPower()).type}) "/>
+            <h:outputLabel value=" (рекомендуется #{hydroStationHandler.getRecommendedFilterCircuit().type}) "/>
 
             <br/>
             <br/>
             <p:commandButton value="Назад" action="/accumulators"/>
-            <p:commandButton value="Далее" action="#"/>
+            <p:commandButton value="Далее" action="#" onclick="submit()"/>
         </p:panel>
 
     </h:form>

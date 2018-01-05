@@ -10,11 +10,11 @@
 
     <h:form>
         <p:panel>
-            <h1>Мотор-насосные группы</h1>
+            <h4>Мотор-насосные группы</h4>
             <br/>
 
-            <ui:repeat id="erg" value="#{hydroStation.pumps}" var="pump" varStatus="status">
-                <p:commandButton value="Удалить" action="#{hydroStation.removePump(status.index)}"/>
+            <ui:repeat id="erg" value="#{hydroStationHandler.pumps}" var="pump" varStatus="status">
+                <p:commandButton value="Удалить" action="#{hydroStationHandler.removePump(status.index)}"/>
                 <strong><h:outputLabel value=" Насос #{status.index+1}. "/></strong>
                 <h:outputLabel value=" расчетная мощность: #{pump.power}кВт "/><br/>
                 <h:outputLabel value=" давление (бар): "/>
@@ -31,7 +31,7 @@
                 <br/>
                 <br/>
             </ui:repeat>
-            <p:commandButton value="Добавить насос" action="#{hydroStation.addPump}"/>
+            <p:commandButton value="Добавить насос" action="#{hydroStationHandler.addPump()}"/>
             <br/>
             <br/>
             <p:commandButton value="Далее" action="/accumulators"/>

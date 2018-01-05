@@ -1,9 +1,9 @@
-package gr.demo.developer.demodeveloper.beans;
+package gr.demo.developer.demodeveloper.api;
 
-public class FilterCircuit {
+public class HeatExchanger {
     private String type;
 
-    public FilterCircuit(String type) {
+    public HeatExchanger(String type) {
         this.type = type;
     }
 
