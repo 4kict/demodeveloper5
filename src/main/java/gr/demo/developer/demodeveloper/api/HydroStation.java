@@ -1,10 +1,5 @@
 package gr.demo.developer.demodeveloper.api;
 
-import gr.demo.developer.demodeveloper.api.Accumulator;
-import gr.demo.developer.demodeveloper.api.FilterCircuit;
-import gr.demo.developer.demodeveloper.api.HeatExchanger;
-import gr.demo.developer.demodeveloper.api.Pump;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +9,7 @@ public class HydroStation {
     private List<Accumulator> accumulators = new ArrayList<>();
     private FilterCircuit filterCircuit;
     private HeatExchanger heatExchanger;
+    private Tank tank;
 
     public HydroStation() {
         pumps.add(new Pump());
@@ -27,7 +23,7 @@ public class HydroStation {
         pumps.add(new Pump());
     }
 
-    public int pumpCount(){
+    public int pumpCount() {
         return pumps.size();
     }
 
@@ -71,4 +67,11 @@ public class HydroStation {
         return pumps.stream().mapToInt(Pump::getPower).sum();
     }
 
+    public Tank getTank() {
+        return tank;
+    }
+
+    public void setTank(Tank tank) {
+        this.tank = tank;
+    }
 }
