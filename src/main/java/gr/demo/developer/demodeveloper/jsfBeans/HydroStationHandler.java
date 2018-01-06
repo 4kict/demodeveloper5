@@ -7,6 +7,7 @@ import gr.demo.developer.demodeveloper.services.FilterCircuitService;
 import gr.demo.developer.demodeveloper.services.HeatExchangerService;
 import gr.demo.developer.demodeveloper.services.TankService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * типа контроллера/сервиса для JSF
  */
 @Component
+@Scope("session")
 public class HydroStationHandler {
 
     @Autowired
