@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<f:view>
+
+    <h:form>
+        <p:panel>
+            <h4>Гидростанция сконфигурированна</h4>
+            <br/>
+
+            <ui:repeat id="pumpsGroup" value="#{hydroStationHandler.pumps}" var="pump" varStatus="status">
+                <strong><h:outputLabel value=" Насос #{status.index+1}. "/></strong>
+                <h:outputLabel value=" расчетная мощность: #{pump.power}кВт "/><br/>
+                <h:outputLabel value=" давление (бар): #{pump.pressure}"/><br/>
+                <h:outputLabel value=" расход (л/мин): #{pump.flow}"/><br/>
+                <h:outputLabel value=" напорный фильтр: #{pump.pFilter}"/>
+                <br/>
+                <br/>
+            </ui:repeat>
+
+            <ui:repeat id="accumGroup" value="#{hydroStationHandler.getAccumulators()}" var="accum" varStatus="status">
+                <strong><h:outputLabel value=" Аккумулятор #{status.index+1}. "/></strong>
+                <h:outputLabel value=" объем: #{accum.volume}"/>
+                <br/>
+            </ui:repeat>
+            <br/>
+
+            <h:outputLabel value="Контур фильтрации и теплообмена: #{hydroStationHandler.filterCircuit.type}"/><br/>
+            <h:outputLabel value="Теплообменник: #{hydroStationHandler.heatExchanger.type}"/><br/>
+            <h:outputLabel value="Бак: #{hydroStationHandler.tank.type}"/><br/>
+
+            <br/>
+            <p:commandButton value="Назад" action="/tank"/>
+        </p:panel>
+
+    </h:form>
+</f:view>
+</html>

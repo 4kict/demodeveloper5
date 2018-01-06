@@ -1,5 +1,7 @@
 package gr.demo.developer.demodeveloper.jsfBeans;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gr.demo.developer.demodeveloper.api.*;
 import gr.demo.developer.demodeveloper.services.FilterCircuitService;
 import gr.demo.developer.demodeveloper.services.HeatExchangerService;
@@ -162,5 +164,16 @@ public class HydroStationHandler {
             return;
         }
         hydroStation.setHeatExchanger(getRecommendedHeatExchanger());
+    }
+
+    private final static ObjectMapper OBJECTMAPPER = new ObjectMapper();
+
+    public String getHydroStationJSON(){
+        try {
+            return OBJECTMAPPER.writeValueAsString(hydroStation);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return "ERROE";
     }
 }
