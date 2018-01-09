@@ -1,9 +1,23 @@
 package gr.demo.developer.demodeveloper.api;
 
-public class Pump {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class Pump implements Serializable {
+    private static final long serialVersionUID = -6567648641961768021L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private Integer pressure = 0;
     private Integer flow = 0;
     private Boolean pFilter = false;
+
+    protected Pump() {
+    }
 
     public Integer getPressure() {
         return pressure;

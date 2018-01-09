@@ -1,12 +1,25 @@
 package gr.demo.developer.demodeveloper.api;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class FilterCircuit implements Serializable {
 
-    private static final long serialVersionUID = 20673923847L;
+    private static final long serialVersionUID = -1023722314465834243L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String type;
+
+    protected FilterCircuit() {
+    }
 
     public FilterCircuit(String type) {
         this.type = type;
@@ -30,7 +43,6 @@ public class FilterCircuit implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(type);
     }
 }
