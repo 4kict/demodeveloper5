@@ -17,11 +17,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.util.HashMap;
 
+/**
+ * http://localhost:8771/rest/browser/index.html#/rest/
+ */
+
 @SpringBootApplication
+//@EnableEurekaClient
 public class DemodeveloperApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context  = SpringApplication.run(DemodeveloperApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(DemodeveloperApplication.class, args);
         FilterCircuitRepository repa = context.getBean(FilterCircuitRepository.class);
         repa.save(new FilterCircuit("Filter A1"));
         repa.save(new FilterCircuit("Filter A2"));
