@@ -5,16 +5,21 @@ import gr.demo.developer.demodeveloper.repositories.FilterCircuitRepository;
 import gr.demo.developer.demodeveloper.scope.ViewScope;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.info.Info;
+import org.springframework.boot.actuate.info.InfoContributor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -22,7 +27,7 @@ import java.util.HashMap;
  */
 
 @SpringBootApplication
-//@EnableEurekaClient
+@EnableEurekaClient
 public class DemodeveloperApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {
@@ -77,4 +82,18 @@ public class DemodeveloperApplication extends WebMvcConfigurerAdapter {
 //			}
 //		};
 //	}
+}
+
+/**
+ * доп. инфа в /info
+ */
+@Component
+class InfoContributorImpl implements InfoContributor {
+
+    @Override
+    public void contribute(Info.Builder builder) {
+        builder.withDetail("example",
+                Collections.singletonMap("key", "value"));
+    }
+
 }

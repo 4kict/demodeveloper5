@@ -1,14 +1,16 @@
 package gr.demo.developer.demodeveloper.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  */
-@RestController("hello")
-public class HelloController {
+@RestController
 
+public class HelloController {
+    @RequestMapping(path = "/hello")
     public String savePerson() {
-        return "Hello!@#";
+        return "Hello! from HydroStation!";
     }
 
 }
